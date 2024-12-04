@@ -6,6 +6,7 @@ from torchvision import transforms
 import torch
 from collections import defaultdict, Counter
 from recognition import cosine_similarity, recognize_face
+from record import log_to_excel
 
 # Load the pre-trained FaceNet model
 facenet_model = InceptionResnetV1(pretrained='vggface2').eval()
@@ -38,6 +39,8 @@ def find_closest_face(new_face, existing_faces, threshold=50):
         if distance < threshold:
             return face_id
     return None
+
+logged_names = set()
 
 # Open the webcam
 cap = cv2.VideoCapture(0)
@@ -89,6 +92,10 @@ while True:
         # Determine the most common prediction in the buffer
         if len(face_prediction_buffer[face_id]) == buffer_size:
             consensus_name = Counter(face_prediction_buffer[face_id]).most_common(1)[0][0]
+         # Log the recognized name to Excel only if not already logged
+            if consensus_name != "Unknown" and consensus_name not in logged_names:
+                log_to_excel(consensus_name)
+                logged_names.add(consensus_name)
         else:
             consensus_name = "Recognizing..."
 
