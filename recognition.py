@@ -7,10 +7,14 @@ def cosine_similarity(embedding1, embedding2):
     norm2 = np.linalg.norm(embedding2)
     return dot_product / (norm1 * norm2)
 
+# Function to recognize a face
 def recognize_face(embedding, stored_embeddings, threshold=0.6):
-    # Compare the face embedding to stored embeddings
-    for name, stored_embedding in stored_embeddings.items():
-        similarity = cosine_similarity(embedding, stored_embedding)
-        if similarity > threshold:
-            return name  # Return the name of the person
-    return "Unknown"
+    best_match = None
+    best_similarity = -1
+    for name, embeddings_list in stored_embeddings.items():
+        for stored_embedding in embeddings_list:
+            similarity = cosine_similarity(embedding, stored_embedding)
+            if similarity > best_similarity and similarity > threshold:
+                best_similarity = similarity
+                best_match = name
+    return best_match if best_match else "Unknown"
