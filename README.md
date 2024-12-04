@@ -121,30 +121,5 @@ This system can be employed in:
 
 ---
 
-## Installation
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/your-repo-name/FacialRecognitionAttendance.git
-
-  - Intel Core i5 (8th generation or newer) or equivalent.
-  - HD webcam (720p or higher).
-- **Software**:
-  - Python 3.10.4
-  - OpenCV
-  - TensorFlow
-  - Flask
-  - MySQL
-
-### Deployment Environment
-- **Operating System**: Windows 10, macOS 10.13+, or modern Linux distributions (e.g., Ubuntu 18.04 LTS).
-- **Browser**: Modern web browser for accessing the interface.
-
----
-
-## Expected Outcome
-
-- An automated, secure, and accurate system for recording and managing attendance.
-- A web-based platform providing real-time updates and comprehensive reporting.
 
 
