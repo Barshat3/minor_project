@@ -147,10 +147,4 @@ This system can be employed in:
 - An automated, secure, and accurate system for recording and managing attendance.
 - A web-based platform providing real-time updates and comprehensive reporting.
 
----
 
-## Installation
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/your-repo-name/FacialRecognitionAttendance.git
