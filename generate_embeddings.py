@@ -7,7 +7,7 @@ from torchvision import transforms
 import pickle
 
 # Dataset and output paths
-DATASET_PATH = "/home/barshat/Desktop/minor_project/lfw"  # Update with your dataset path
+DATASET_PATH = "/home/barshat/Desktop/minor_project/lfw"  
 OUTPUT_FILE = "embeddings.pickle"   # File to save embeddings
 
 # Initialize the pre-trained FaceNet model

@@ -7,6 +7,10 @@ import torch
 from collections import defaultdict, Counter
 from recognition import cosine_similarity, recognize_face
 from record import log_to_excel
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+from update_db import update_attendance_in_firebase
 
 # Load the pre-trained FaceNet model
 facenet_model = InceptionResnetV1(pretrained='vggface2').eval()
@@ -94,6 +98,8 @@ while True:
             consensus_name = Counter(face_prediction_buffer[face_id]).most_common(1)[0][0]
          # Log the recognized name to Excel only if not already logged
             if consensus_name != "Unknown" and consensus_name not in logged_names:
+                # Update attendance in Firebase
+                update_attendance_in_firebase(db.reference("Microprocessor"), consensus_name)  # Update for Microprocessor
                 log_to_excel(consensus_name)
                 logged_names.add(consensus_name)
         else:
